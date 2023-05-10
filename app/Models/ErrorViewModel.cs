@@ -1,4 +1,4 @@
-namespace azure_test.Models;
+namespace app.Models;
 
 public class ErrorViewModel
 {

@@ -69,7 +69,7 @@ variable "atca_cr_admin_enabled" {
 }
 
 variable "atca_cr_name" {
-  default = "atca-container-rregistry"
+  default = "atca-container-registry"
 }
 
 variable "atca_cr_sku" {

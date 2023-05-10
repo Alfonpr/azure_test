@@ -69,7 +69,7 @@ variable "atca_crt_name" {
 variable "atca_crt_platform_os" {
   default = "Linux"
 }
-
+/*
 variable "atca_crt_docker_step_context_access_token" {
 # = "<github personal access token>"
 }
@@ -81,7 +81,7 @@ variable "atca_crt_docker_step_context_path" {
 variable "atca_crt_docker_step_dockerfile_path" {
 # = "Dockerfile"
 }
-
+*/
 variable "atca_la_name" {
   default = "atca-log-analytics"
 }

@@ -1,11 +1,14 @@
 # This are variables needed
 variable "github_access_token" {
+  type = string
 }
 
 variable "github_project_name" {
+  type = string
 }
 
 variable "github_username" {
+  type = string
 }
 
 # This are variables given

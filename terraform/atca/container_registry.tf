@@ -1,10 +1,8 @@
-/*
 resource "azurerm_container_registry" "atca_cr" {
   name                = var.atca_cr_name
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.atca_rg.name
+  location            = var.location
   sku                 = var.atca_cr_sku
-  admin_enabled       = vat.atca_cr_admin_enabled
 }
 
 resource "azurerm_container_registry_task" "atca_crt" {
@@ -15,8 +13,7 @@ resource "azurerm_container_registry_task" "atca_crt" {
   }
   docker_step {
     dockerfile_path      = var.atca_crt_docker_step_dockerfile_path
-    context_path         = var.atca_crt_docker_step_context_path
-    context_access_token = var.atca_crt_docker_step_context_access_token
+    context_path         = local.atca_crt_docker_step_context_path
+    context_access_token = local.atca_crt_docker_step_context_access_token
   }
 }
-*/

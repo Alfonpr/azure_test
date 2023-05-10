@@ -1,3 +1,14 @@
+# This are variables needed
+variable "github_access_token" {
+}
+
+variable "github_project_name" {
+}
+
+variable "github_username" {
+}
+
+# This are variables given
 variable "location" {
   default = "northcentralus"
 }
@@ -69,19 +80,12 @@ variable "atca_crt_name" {
 variable "atca_crt_platform_os" {
   default = "Linux"
 }
-/*
-variable "atca_crt_docker_step_context_access_token" {
-# = "<github personal access token>"
-}
-
-variable "atca_crt_docker_step_context_path" {
-# = "https://github.com/<user name>/acr-build-helloworld-node#main"
-}
 
 variable "atca_crt_docker_step_dockerfile_path" {
-# = "Dockerfile"
+  # could be only dockerfile
+  default = "app/Dockerfile"
 }
-*/
+
 variable "atca_la_name" {
   default = "atca-log-analytics"
 }

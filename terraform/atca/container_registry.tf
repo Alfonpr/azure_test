@@ -14,6 +14,6 @@ resource "azurerm_container_registry_task" "atca_crt" {
   docker_step {
     dockerfile_path      = var.atca_crt_docker_step_dockerfile_path
     context_path         = local.atca_crt_docker_step_context_path
-    context_access_token = local.atca_crt_docker_step_context_access_token
+    context_access_token = var.atca_crt_docker_step_context_access_token
   }
 }

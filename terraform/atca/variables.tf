@@ -1,6 +1,5 @@
 # This are variables needed
-variable "github_access_token" {
-  type = string
+variable "atca_crt_docker_step_context_access_token" {
 }
 
 variable "github_project_name" {
@@ -69,7 +68,8 @@ variable "atca_cr_admin_enabled" {
 }
 
 variable "atca_cr_name" {
-  default = "atca-container-registry"
+  description = "doesn't admits hyphens ('-')"
+  default = "atcacontainerregistry"
 }
 
 variable "atca_cr_sku" {

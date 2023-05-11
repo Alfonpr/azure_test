@@ -69,7 +69,7 @@ variable "atca_cr_admin_enabled" {
 
 variable "atca_cr_name" {
   description = "doesn't admits hyphens ('-')"
-  default = "atcacontainerregistry"
+  default     = "atcacontainerregistry"
 }
 
 variable "atca_cr_sku" {

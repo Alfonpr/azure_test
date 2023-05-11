@@ -15,5 +15,6 @@ resource "azurerm_container_registry_task" "atca_crt" {
     dockerfile_path      = var.atca_crt_docker_step_dockerfile_path
     context_path         = local.atca_crt_docker_step_context_path
     context_access_token = var.atca_crt_docker_step_context_access_token
+    image_names          = ["${azurerm_container_registry.atca_cr.login_server}/flagcont:latest"]
   }
 }

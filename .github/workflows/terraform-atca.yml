@@ -39,5 +39,5 @@ jobs:
         GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
         GITHUB_USERNAME: ${{ secrets.USERNAME }}
-      run: terraform apply -auto-approve -var github_access_token=${{ env.GITHUB_ACCESS_TOKEN }} -var github_project_name=${{ env.GITHUB_PROJECT_NAME }} -var github_username=${{ env.GITHUB_USERNAME }}
+      run: terraform apply -auto-approve -var atca_crt_docker_step_context_access_token=${{ env.GITHUB_ACCESS_TOKEN }} -var github_project_name=${{ env.GITHUB_PROJECT_NAME }} -var github_username=${{ env.GITHUB_USERNAME }}
       working-directory: terraform/atca

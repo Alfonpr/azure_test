@@ -1,0 +1,13 @@
+name: 'test'
+
+on:
+  pull_request:
+    branches:    
+    - main
+        
+jobs: 
+    echo_github_data:
+        name: Echo-ing- github dictionary
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo ${{github}}

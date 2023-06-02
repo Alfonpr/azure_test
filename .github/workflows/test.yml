@@ -4,10 +4,24 @@ on:
   pull_request:
     branches:    
     - main
-        
+  push:
+    branches:
+    - main  
+
+defaults: 
+    run: 
+        shell: bash
+
 jobs: 
-    echo_github_data:
-        name: Echo-ing- github dictionary
+    ci_test:
         runs-on: ubuntu-latest
+        name: CI Test of our code
+        steps:
+            - run: ls -la
+
+
+    echo_github_data:
+        runs-on: ubuntu-latest
+        name: Echo-ing- github dictionary
         steps:
             - run: echo '${{ toJSON(github) }}'

@@ -6,16 +6,24 @@ on:
     - main
   push:
     branches:
-    - main  
+    - main
 
-defaults: 
-    run: 
+defaults:
+    run:
         shell: bash
 
 jobs: 
     ci_test:
         runs-on: ubuntu-latest
         name: CI Test of our code
+        steps:
+            - uses: actions/checkout@v3
+            - run: ls -la
+
+    echo_ing_:
+        needs: [ci_test]
+        runs-on: ubuntu-latest
+        name: echoing the folder content
         steps:
             - run: ls -la
 

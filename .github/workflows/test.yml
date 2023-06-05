@@ -76,15 +76,17 @@ jobs:
               working-directory: terraform
 
     failure_control:
+        needs: [ci_test, cd_test]
         if: failure()
         runs-on: ubuntu-latest
-        name: Echo-ing- github dictionary
+        name: Failure
         steps:
             - run: echo 'failure found' 
 
     success_control:
+        needs: [ci_test, cd_test]
         if: success()
         runs-on: ubuntu-latest
-        name: Echo-ing- github dictionary
+        name: Success
         steps:
             - run: echo 'all working'

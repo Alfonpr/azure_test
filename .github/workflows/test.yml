@@ -28,7 +28,7 @@ jobs:
               working-directory: app
             - name: Build .NET
               run: dotnet build
-              working-directory: terraform
+              working-directory: app
             - name: Checking generated files by the build
               run: ls -la
             - name: Store build files

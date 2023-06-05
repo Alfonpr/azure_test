@@ -22,7 +22,7 @@ jobs:
 #                implicit-restore: true
             - uses: actions/setup-dotnet@v3
               with: 
-                dotnet-version: '7.0.5'
+                dotnet-version: '7'
             - name: Test .NET
               run: dotnet test
             - name: Build .NET

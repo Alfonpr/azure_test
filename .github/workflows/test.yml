@@ -74,7 +74,9 @@ jobs:
                 creds: ${{ secrets.AZURE_CREDS }}
 
             - name: Terraform Apply
-              run: terraform apply -auto-approve
+              env:
+                SSH_PUBLIC_KEY: ${{ secrets.SSH_KEY }}
+              run: terraform apply -auto-approve -var ssh_public_key=${{ env.SSH_PUBLIC_KEY }}
               working-directory: terraform
 
     failure_control:

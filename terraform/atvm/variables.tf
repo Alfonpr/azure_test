@@ -102,7 +102,7 @@ variable "username" {
   default = "azureuser"
 }
 
-variable "ssh_public_key_path" {
+variable "ssh_public_key" {
 }
 
 variable "tags" {

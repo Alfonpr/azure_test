@@ -75,8 +75,8 @@ jobs:
 
             - name: Terraform Apply
               env:
-                SSH_PUBLIC_KEY: ${{ secrets.SSH_KEY }}
-              run: terraform apply -auto-approve -var ssh_public_key=${{ env.SSH_PUBLIC_KEY }}
+                TF_VAR_ssh_private_key_filename: ${{ secrets.SSH_KEY }}
+              run: terraform apply -auto-approve
               working-directory: terraform
 
     failure_control:

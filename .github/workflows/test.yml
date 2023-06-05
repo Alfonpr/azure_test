@@ -1,12 +1,10 @@
 name: 'test'
 
 on:
-  pull_request:
-    branches:    
-    - main
   push:
     branches:
     - main
+  workflow_dispatch:
 
 defaults:
     run:
@@ -15,21 +13,84 @@ defaults:
 jobs: 
     ci_test:
         runs-on: ubuntu-latest
-        name: CI Test of our code
+        name: 'Continuous implementation of our .NET code'
         steps:
             - uses: actions/checkout@v3
-            - run: ls -la
-
-    echo_ing_:
-        needs: [ci_test]
+            - name: Checking download of files
+              run: ls -la
+            - name: Lint .NET
+              uses: zyactions/dotnet-lint@v1
+              with:
+                workspace: app
+                implicit-restore: true
+            - uses: actions/setup-dotnet@v3
+              with: 
+                dotnet-version: '7.0.5'
+            - name: Test .NET
+              run: dotnet test
+            - name: Build .NET
+              run: dotnet build
+            - name: Checking generated files by the build
+              run: ls -la
+            - name: Store build files
+              uses: actions/upload-artifact@v3
+              with:
+                name: build_binary
+                path: app/bin  
+            - name: Store Terraform project
+              uses: actions/upload-artifact@v3
+              with:
+                name: terraform_project
+                path: terraform/atvm
+                
+    cd_test:
+        name: 'Continuous deployment of our .NET code using terraform'
         runs-on: ubuntu-latest
-        name: echoing the folder content
         steps:
-            - run: ls -la
+            - name: Download Build files
+              uses: actions/download-artifact@v3
+              with:
+                name: build_binary
+                path: app
+            - name: Download Build files
+              uses: actions/download-artifact@v3
+              with:
+                name: terraform_project
+                path: terraform
+            - name: Checking download of files
+              run: ls -la
+            - name: Initialize Terraform
+              uses: hashicorp/setup-terraform@v2
+              with:
+                terraform_version: "1.4.6"
 
+            - name: Terraform Init
+              run: terraform init
+              working-directory: terraform
 
-    echo_github_data:
+            - name: Login to Azure
+              uses: azure/login@v1
+              with:
+                creds: ${{ secrets.AZURE_CREDS }}
+
+            - name: Terraform Apply
+              env:
+                GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                GITHUB_PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
+                GITHUB_USERNAME: ${{ secrets.USERNAME }}
+              run: terraform apply -auto-approve
+              working-directory: terraform
+
+    failure_control:
+        if: failure()
         runs-on: ubuntu-latest
         name: Echo-ing- github dictionary
         steps:
-            - run: echo '${{ toJSON(github) }}'
+            - run: echo 'failure found' 
+
+    success_control:
+        if: success()
+        runs-on: ubuntu-latest
+        name: Echo-ing- github dictionary
+        steps:
+            - run: echo 'all working'

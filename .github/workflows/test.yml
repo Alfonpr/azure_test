@@ -29,8 +29,6 @@ jobs:
             - name: Build .NET
               run: dotnet build
               working-directory: app
-            - name: Checking generated files by the build
-              run: ls -la
             - name: Store build files
               uses: actions/upload-artifact@v3
               with:
